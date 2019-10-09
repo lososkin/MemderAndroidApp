@@ -4,6 +4,9 @@ package com.example.memder;
 
 import android.app.Activity;
 import android.app.AppComponentFactory;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,15 +15,23 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.github.kevinsawicki.http.HttpRequest;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity {
 
     private ArrayList<String> al;
     private ArrayAdapter<String> arrayAdapter;
+    private String adress = "https://memnderapi.pythonanywhere.com/memes/api/get/";
+    private String tokenFromStorage;
     private int i;
 
 
@@ -28,6 +39,33 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        final Map<String, String> data = new HashMap<String, String>();
+        SharedPreferences prefs = getSharedPreferences("token", MODE_PRIVATE);
+        tokenFromStorage = prefs.getString("token", "Token not found");
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    data.put("Authorization", " Token " + tokenFromStorage);
+                    HttpRequest response = HttpRequest.post(adress).headers(data);
+                    int status = response.code();
+                    System.out.println(tokenFromStorage);
+                    System.out.println("@@@@@@@@@@@@@@@@@ " + status);
+
+                    if(status == 200){
+                        JSONObject json = new JSONObject(response.body());
+                        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+                        System.out.println(json.get("img"));
+                    }else {
+                        JSONObject json = new JSONObject(response.body());
+                        System.out.println(json.get("detail"));
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
 
         al = new ArrayList<>();
@@ -95,4 +133,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void logoutUser(View view) {
+        System.out.println("TEEEEEEEEEEEEEEEEEEEEEEESTT");
+        Intent intent = new Intent(MainActivity.this, LoginOrRegistrationActivity.class);
+        startActivity(intent);
+        finish();
+        return;
+    }
 }

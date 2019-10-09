@@ -1,4 +1,5 @@
 package com.example.memder;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -42,7 +43,6 @@ public class LoginActivity extends AppCompatActivity {
                             data.put("username", String.valueOf(mEmail.getText()));
                             data.put("password", String.valueOf(mPassword.getText()));
 
-                            //Исправить
                             HttpRequest response = HttpRequest.post(addres).form(data);
                             int status = response.code();
                             String token = response.body();
@@ -60,7 +60,9 @@ public class LoginActivity extends AppCompatActivity {
                                 editor.apply();
                                 System.out.println("ACCEPT AND SAVE TOKEN");
                                 System.out.println(json.get("token"));
-
+                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                startActivity(intent);
+                                finish();
                             }
                             else{
                                 System.out.println("KEK");

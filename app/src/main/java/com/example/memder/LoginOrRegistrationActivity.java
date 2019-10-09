@@ -22,6 +22,7 @@ public class LoginOrRegistrationActivity extends AppCompatActivity {
 
     private Button mLogin, mRegister;
     private static final String addresToken = "https://memnderapi.pythonanywhere.com/signin_and_signup/api/checktoken/";
+    public String tokenFromStorage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,18 +33,21 @@ public class LoginOrRegistrationActivity extends AppCompatActivity {
             @Override
             public void run() {
                 SharedPreferences prefs = getSharedPreferences("token", MODE_PRIVATE);
-                String tokenFromStorage = prefs.getString("token", "Token not found");
+                tokenFromStorage = prefs.getString("token", "Error");
 
-                prefs.edit().clear().commit();
+                //prefs.edit().clear().commit();
 
-                if (tokenFromStorage!="Token not found"){
+                if (tokenFromStorage!="Error"){
                     Map<String, String> data = new HashMap<String, String>();
-                    data.put("Authorization", "Token " + tokenFromStorage);
+                    data.put("Authorization", " Token " + tokenFromStorage);
+                    System.out.println("__________________ " + tokenFromStorage);
 
-                    int status = HttpRequest.post(addresToken).headers(data).code();
-                    String responseBody = HttpRequest.post(addresToken).headers(data).body();
+                    HttpRequest response = HttpRequest.post(addresToken).headers(data);
+                    int status = response.code();
+                    System.out.println("RESPONCE CODE: " + status);
+                    String token = response.body();
                     try {
-                        JSONObject json = new JSONObject(responseBody);
+                        JSONObject json = new JSONObject(token);
                         if(status == 200){
                             System.out.println("OPEN ACTIVITY WITH TOKEN");
                             Intent intent = new Intent(LoginOrRegistrationActivity.this, MainActivity.class);

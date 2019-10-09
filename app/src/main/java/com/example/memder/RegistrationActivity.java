@@ -48,12 +48,6 @@ public class RegistrationActivity extends AppCompatActivity {
                             int status = response.code();
                             String token = response.body();
 
-
-                            System.out.println(token);
-
-                            SharedPreferences prefs = getSharedPreferences("token", MODE_PRIVATE);
-                            String tokenFromStorage = prefs.getString("token", "Token not found");
-                            //prefs.edit().clear().commit();
                             JSONObject json = new JSONObject(token);
 
                             if(status == 200){
