@@ -31,10 +31,12 @@ public class LoginOrRegistrationActivity extends AppCompatActivity {
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
-                SharedPreferences prefs = getSharedPreferences("idar-elda", MODE_PRIVATE);
-                String tokenFromStorage = prefs.getString("token", "PIZDA");
+                SharedPreferences prefs = getSharedPreferences("token", MODE_PRIVATE);
+                String tokenFromStorage = prefs.getString("token", "Token not found");
 
-                if (tokenFromStorage!="PIZDA"){
+                prefs.edit().clear().commit();
+
+                if (tokenFromStorage!="Token not found"){
                     Map<String, String> data = new HashMap<String, String>();
                     data.put("Authorization", "Token " + tokenFromStorage);
 

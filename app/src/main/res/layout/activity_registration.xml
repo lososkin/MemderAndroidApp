@@ -18,6 +18,11 @@
         android:layout_height="wrap_content"
         android:hint="password"
         android:id="@+id/password"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="password1"
+        android:id="@+id/password1"/>
 
     <Button
         android:layout_width="match_parent"
