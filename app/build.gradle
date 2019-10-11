@@ -29,4 +29,5 @@ dependencies {
     implementation 'com.lorentzos.swipecards:library:1.0.9'
     implementation 'com.github.kevinsawicki:http-request:6.0'
     implementation 'com.github.kevinsawicki:http-request:6.0'
+    implementation("com.squareup.okhttp3:okhttp:4.2.1")
 }
