@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.github.kevinsawicki.http.HttpRequest;
 
@@ -17,6 +18,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 public class LoginOrRegistrationActivity extends AppCompatActivity {
@@ -105,7 +107,27 @@ public class LoginOrRegistrationActivity extends AppCompatActivity {
                                 finish();
                             }
                             else{
-                                System.out.println("KEK");
+                                Iterator<?> keys = json.keys();
+                                while( keys.hasNext() ) {
+                                    String key = (String) keys.next();
+                                    if (key.equals("non_field_errors")){
+                                        TextView mError = (TextView) findViewById(R.id.ErrorsText);
+                                        mError.setText("Неверный логин/пароль!");
+                                        break;
+                                    }
+
+                                    if (key.equals("username")){
+                                        TextView mError = (TextView) findViewById(R.id.ErrorsText);
+                                        mError.setText("Введите логин!");
+                                        break;
+                                    }
+                                    if (key.equals("password")){
+                                        TextView mError = (TextView) findViewById(R.id.ErrorsText);
+                                        mError.setText("Введите пароль!");
+                                        break;
+                                    }
+
+                                }
                             }
                         } catch (Exception e) {
                             e.printStackTrace();

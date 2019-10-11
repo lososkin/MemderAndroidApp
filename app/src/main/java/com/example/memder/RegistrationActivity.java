@@ -9,12 +9,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.github.kevinsawicki.http.HttpRequest;
 
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 public class RegistrationActivity extends AppCompatActivity {
@@ -41,10 +43,13 @@ public class RegistrationActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         try {
-                            data.put("username", String.valueOf(mEmail.getText()));
-                            data.put("password", String.valueOf(mPassword.getText()));
-                            data.put("password2", String.valueOf(mPassword1.getText()));
 
+                                data.put("username", String.valueOf(mEmail.getText()));
+                                data.put("password", String.valueOf(mPassword.getText()));
+                                data.put("password2", String.valueOf(mPassword1.getText()));
+
+
+                            System.out.println("zdes"+String.valueOf(mPassword.getText())+"zdes");
                             HttpRequest response = HttpRequest.post(addressForRegistration).form(data);
                             int status = response.code();
                             String token = response.body();
@@ -62,7 +67,16 @@ public class RegistrationActivity extends AppCompatActivity {
                                 finish();
                             }
                             else{
-                                System.out.println(json.get("error"));
+                                Iterator<?> keys = json.keys();
+                                TextView mError = (TextView) findViewById(R.id.ErrorsTextReg);
+                                while( keys.hasNext() ) {
+                                    String key = (String) keys.next();
+                                    if (key.equals("error")){
+                                        mError.setText(json.get("error").toString());
+                                        break;
+                                    }
+                                    System.out.println(key);
+                                }
                             }
                         } catch (Exception e) {
                             e.printStackTrace();

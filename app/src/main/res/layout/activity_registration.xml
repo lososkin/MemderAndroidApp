@@ -26,7 +26,10 @@
         android:hint="Повторите пароль"
         android:inputType="textPassword"
         android:id="@+id/password1"/>
-
+    <TextView
+        android:id="@+id/ErrorsTextReg"
+        android:layout_width="match_parent"
+        android:layout_height="30dp" />
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
