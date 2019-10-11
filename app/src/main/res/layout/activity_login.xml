@@ -10,12 +10,14 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Введите логин"
+        android:inputType="textVisiblePassword|textNoSuggestions"
+        android:hint="Логин"
         android:id="@+id/email"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Введите пароль"
+        android:inputType="textPassword"
+        android:hint="Пароль"
         android:id="@+id/Password"/>
     <Button
         android:layout_width="match_parent"
