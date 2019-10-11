@@ -84,7 +84,7 @@ class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
             Response response = client.newCall(request).execute();
             JSONObject json = new JSONObject(response.body().string());
             urldisplay = "https://memnderapi.pythonanywhere.com" + String.valueOf(json.get("img"));
-
+            System.out.println("https://memnderapi.pythonanywhere.com" + String.valueOf(json.get("img")));
             InputStream in = new java.net.URL(urldisplay).openStream();
             mIcon11 = BitmapFactory.decodeStream(in);
         } catch (Exception e) {
@@ -110,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
     private Bitmap image;
     private  Button mLike;
     private  Button mDis;
+    private ImageView imageView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -117,9 +118,11 @@ public class MainActivity extends AppCompatActivity {
         mLike = (Button) findViewById(R.id.Like);
         mDis = (Button) findViewById(R.id.Dis);
         final Map<String, String> data = new HashMap<String, String>();
-        SharedPreferences prefs = getSharedPreferences("token", MODE_PRIVATE);
+        final SharedPreferences prefs = getSharedPreferences("token", MODE_PRIVATE);
         tokenFromStorage = prefs.getString("token", "Token not found");
 
+        imageView = findViewById(R.id.image);
+        imageView.setImageResource(R.drawable.downloadmem);
         new DownloadImageTask((ImageView) findViewById(R.id.image))
                 .execute(tokenFromStorage,"0");
         final OkHttpClient client = new OkHttpClient();
@@ -128,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
         mLike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                imageView.setImageResource(R.drawable.downloadmem);
                 new DownloadImageTask((ImageView) findViewById(R.id.image))
                         .execute(tokenFromStorage,"1");
                 final OkHttpClient client = new OkHttpClient();
@@ -139,23 +142,25 @@ public class MainActivity extends AppCompatActivity {
         mDis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                imageView.setImageResource(R.drawable.downloadmem);
                 new DownloadImageTask((ImageView) findViewById(R.id.image))
                         .execute(tokenFromStorage,"-1");
                 final OkHttpClient client = new OkHttpClient();
             }
         });
+        Button mLogout = (Button) findViewById(R.id.Logout);
+
+        mLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                prefs.edit().clear().commit();
+                Intent intent = new Intent(MainActivity.this, LoginOrRegistrationActivity.class);
+                startActivity(intent);
+                finish();
+                return;
+            }
+        });
 
     }
 
-
-
-
-    public void logoutUser(View view) {
-        SharedPreferences prefs = getSharedPreferences("token", MODE_PRIVATE);
-        prefs.edit().clear().commit();
-        Intent intent = new Intent(MainActivity.this, LoginOrRegistrationActivity.class);
-        startActivity(intent);
-        finish();
-        return;
-    }
 }
