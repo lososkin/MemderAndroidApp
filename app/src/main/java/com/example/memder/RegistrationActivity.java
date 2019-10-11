@@ -28,6 +28,7 @@ public class RegistrationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
         mRegister = (Button) findViewById(R.id.Register);
+        Button mBack = (Button) findViewById(R.id.Back);
         mEmail = (EditText) findViewById(R.id.email);
         mPassword = (EditText) findViewById(R.id.password);
         mPassword1 = (EditText) findViewById(R.id.password1);
@@ -70,5 +71,15 @@ public class RegistrationActivity extends AppCompatActivity {
                 });
             }
         });
+
+        mBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RegistrationActivity.this, LoginOrRegistrationActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
     }
 }

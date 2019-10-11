@@ -7,22 +7,28 @@
     android:orientation="vertical"
     tools:context=".LoginActivity">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textVisiblePassword|textNoSuggestions"
-        android:hint="Логин"
-        android:id="@+id/email"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:hint="Пароль"
-        android:id="@+id/Password"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Войти"
-        android:id="@+id/Login"/>
+<!--    <EditText-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:inputType="textVisiblePassword|textNoSuggestions"-->
+<!--        android:hint="Логин"-->
+<!--        android:id="@+id/email"/>-->
+<!--    <EditText-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:inputType="textPassword"-->
+<!--        android:hint="Пароль"-->
+<!--        android:id="@+id/Password"/>-->
+<!--    <Button-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Войти"-->
+<!--        android:id="@+id/Login"/>-->
+
+<!--    <Button-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Назад"-->
+<!--        android:id="@+id/BackL"/>-->
 
 </LinearLayout>

@@ -33,4 +33,10 @@
         android:text="Зарегистрироваться"
         android:id="@+id/Register"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Назад"
+        android:id="@+id/Back"/>
+
 </LinearLayout>
