@@ -26,6 +26,7 @@ import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -44,11 +45,16 @@ import okhttp3.Response;
 
 class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
     ImageView bmImage;
+    Button mLike;
+    Button mDis;
     private String adress = "https://memnderapi.pythonanywhere.com/memes/api/get/";
     private String likelink = "https://memnderapi.pythonanywhere.com/memes/api/like/";
     final OkHttpClient client = new OkHttpClient();
-    public DownloadImageTask(ImageView bmImage) {
+    public DownloadImageTask(ImageView bmImage, Button mLike, Button mDis) {
         this.bmImage = bmImage;
+        this.mDis=mDis;
+        this.mLike=mLike;
+
     }
 
     protected Bitmap doInBackground(String... urls) {
@@ -96,6 +102,8 @@ class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
 
     protected void onPostExecute(Bitmap result) {
         bmImage.setImageBitmap(result);
+        mLike.setEnabled(true);
+        mDis.setEnabled(true);
     }
 }
 
@@ -123,18 +131,20 @@ public class MainActivity extends AppCompatActivity {
 
         imageView = findViewById(R.id.image);
         imageView.setImageResource(R.drawable.downloadmem);
-        new DownloadImageTask((ImageView) findViewById(R.id.image))
+        mLike.setEnabled(false);
+        mDis.setEnabled(false);
+        new DownloadImageTask((ImageView) findViewById(R.id.image),mLike,mDis)
                 .execute(tokenFromStorage,"0");
-        final OkHttpClient client = new OkHttpClient();
 
 
         mLike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mLike.setEnabled(false);
+                mDis.setEnabled(false);
                 imageView.setImageResource(R.drawable.downloadmem);
-                new DownloadImageTask((ImageView) findViewById(R.id.image))
+                new DownloadImageTask((ImageView) findViewById(R.id.image),mLike,mDis)
                         .execute(tokenFromStorage,"1");
-                final OkHttpClient client = new OkHttpClient();
 
             }
         });
@@ -142,10 +152,11 @@ public class MainActivity extends AppCompatActivity {
         mDis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mLike.setEnabled(false);
+                mDis.setEnabled(false);
                 imageView.setImageResource(R.drawable.downloadmem);
-                new DownloadImageTask((ImageView) findViewById(R.id.image))
+                new DownloadImageTask((ImageView) findViewById(R.id.image),mLike,mDis)
                         .execute(tokenFromStorage,"-1");
-                final OkHttpClient client = new OkHttpClient();
             }
         });
         Button mLogout = (Button) findViewById(R.id.Logout);

@@ -7,36 +7,16 @@ android:layout_height="match_parent"
 android:orientation="vertical"
 tools:context=".LoginActivity">
 
-<EditText
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:inputType="textVisiblePassword|textNoSuggestions"
-    android:hint="Логин"
-    android:id="@+id/email"/>
-<EditText
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:inputType="textPassword"
-    android:hint="Пароль"
-    android:id="@+id/Password"/>
-
-    <TextView
-        android:id="@+id/ErrorsText"
-        android:layout_width="match_parent"
-        android:layout_height="30dp" />
-
-<Button
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="Войти"
-    android:id="@+id/Login"/>
 
 
-<Button
+<TextView
+    android:id="@+id/ErrorsText"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="Зарегистрироваться?"
-    android:id="@+id/Register"/>
+    android:layout_height="30dp"
+    android:text="(Загрузка типа)"
+    />
+
+
 
 
 
