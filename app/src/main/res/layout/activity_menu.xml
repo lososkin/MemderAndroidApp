@@ -5,32 +5,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".LoginActivity">
+    tools:context=".MenuActivity">
+
+
+    <Button
+        android:id="@+id/Logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Выйти"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/Main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="На главную"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/UploadImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Загрузить мем"
+        tools:ignore="MissingConstraints" />
 
     <ImageView
-        android:id="@+id/image"
-        android:layout_width="350dp"
-        android:layout_height="350dp"/>
-
-    <Button
-        android:id="@+id/Like"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Лайк"
-        tools:ignore="MissingConstraints" />
-
-    <Button
-        android:id="@+id/Dis"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Дизлайк"
-        tools:ignore="MissingConstraints" />
-
-    <Button
-        android:id="@+id/Menu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Меню"
-        tools:ignore="MissingConstraints" />
-
+        android:id="@+id/UploadedImage"
+        android:layout_width="300dp"
+        android:layout_height="300dp"/>
 </LinearLayout>
