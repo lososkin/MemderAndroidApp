@@ -88,6 +88,8 @@ class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
 
 
             Response response = client.newCall(request).execute();
+            if (response.code()==204)
+                return null;
             JSONObject json = new JSONObject(response.body().string());
             urldisplay = "https://memnderapi.pythonanywhere.com" + String.valueOf(json.get("img"));
             System.out.println("https://memnderapi.pythonanywhere.com" + String.valueOf(json.get("img")));
@@ -101,7 +103,12 @@ class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
     }
 
     protected void onPostExecute(Bitmap result) {
-        bmImage.setImageBitmap(result);
+        if (result==null){
+            bmImage.setImageResource(R.drawable.nomemes);
+        }
+        else {
+            bmImage.setImageBitmap(result);
+        }
         mLike.setEnabled(true);
         mDis.setEnabled(true);
     }
@@ -159,13 +166,12 @@ public class MainActivity extends AppCompatActivity {
                         .execute(tokenFromStorage,"-1");
             }
         });
-        Button mLogout = (Button) findViewById(R.id.Logout);
+        Button mMenu = (Button) findViewById(R.id.Menu);
 
-        mLogout.setOnClickListener(new View.OnClickListener() {
+        mMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                prefs.edit().clear().commit();
-                Intent intent = new Intent(MainActivity.this, LoginOrRegistrationActivity.class);
+                Intent intent = new Intent(MainActivity.this, MenuActivity.class);
                 startActivity(intent);
                 finish();
                 return;
