@@ -131,9 +131,10 @@ public class MainActivity extends AppCompatActivity {
 
         imageView = findViewById(R.id.image);
         imageView.setImageResource(R.drawable.downloadmem);
+        mLike.setEnabled(false);
+        mDis.setEnabled(false);
         new DownloadImageTask((ImageView) findViewById(R.id.image),mLike,mDis)
                 .execute(tokenFromStorage,"0");
-        final OkHttpClient client = new OkHttpClient();
 
 
         mLike.setOnClickListener(new View.OnClickListener() {
@@ -144,7 +145,6 @@ public class MainActivity extends AppCompatActivity {
                 imageView.setImageResource(R.drawable.downloadmem);
                 new DownloadImageTask((ImageView) findViewById(R.id.image),mLike,mDis)
                         .execute(tokenFromStorage,"1");
-                final OkHttpClient client = new OkHttpClient();
 
             }
         });
@@ -157,7 +157,6 @@ public class MainActivity extends AppCompatActivity {
                 imageView.setImageResource(R.drawable.downloadmem);
                 new DownloadImageTask((ImageView) findViewById(R.id.image),mLike,mDis)
                         .execute(tokenFromStorage,"-1");
-                final OkHttpClient client = new OkHttpClient();
             }
         });
         Button mLogout = (Button) findViewById(R.id.Logout);
