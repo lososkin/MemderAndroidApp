@@ -82,6 +82,7 @@ public class MenuActivity extends AppCompatActivity {
 
         ImageView imageView = (ImageView) findViewById(R.id.UploadedImage);
         imageView.setImageURI(selectedImageURI);
+
                 final int size = (int) imageFile.length();
                 byte[] bytes = new byte[size];
                 try {

@@ -5,88 +5,13 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
-
-    <LinearLayout
-
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="90"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:id="@+id/fragment_container">
+    </RelativeLayout>
 
-        <LinearLayout
-            android:layout_weight="200"
-            android:layout_below="@+id/content"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_weight="10"
-                android:layout_width="0dp"
-                android:layout_height="0dp"/>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/content"
-                android:layout_weight="80"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_above="@+id/navigation_bottom"
-                tools:ignore="ObsoleteLayoutParam"
-                android:background="@color/cardview_dark_background">
-
-                <ImageView
-                    android:id="@+id/image"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
-
-
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <ImageView
-                android:layout_weight="10"
-                android:layout_width="0dp"
-                android:layout_height="0dp"/>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_weight="10"
-            android:layout_below="@+id/content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="10"/>
-            <Button
-                android:id="@+id/Like"
-                android:layout_weight="20"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Лайк" />
-
-            <Button
-                android:id="@+id/Dis"
-                android:layout_weight="20"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Дизлайк" />
-
-            <Button
-                android:layout_weight="0"
-                android:id="@+id/Menu"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Меню" />
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="10"/>
-        </LinearLayout>
-    </LinearLayout>
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_weight="13"
         android:id="@+id/navigation_bottom"

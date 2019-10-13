@@ -136,8 +136,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        BottomNavigationView bottomNav = findViewById(R.id.navigation_bottom);
-//        bottomNav.setOnNavigationItemSelectedListener(navListener);
+        BottomNavigationView bottomNav = findViewById(R.id.navigation_bottom);
+        bottomNav.setOnNavigationItemSelectedListener(navListener);
+        bottomNav.setSelectedItemId(R.id.nav_memes);
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new MainFragment()).commit();
 
         mLike = (Button) findViewById(R.id.Like);
         mDis = (Button) findViewById(R.id.Dis);
@@ -145,64 +147,73 @@ public class MainActivity extends AppCompatActivity {
         final SharedPreferences prefs = getSharedPreferences("token", MODE_PRIVATE);
         tokenFromStorage = prefs.getString("token", "Token not found");
 
-        imageView = findViewById(R.id.image);
-        imageView.setImageResource(R.drawable.downloadmem);
-        mLike.setEnabled(false);
-        mDis.setEnabled(false);
-        new DownloadImageTask((ImageView) findViewById(R.id.image),mLike,mDis)
-                .execute(tokenFromStorage,"0");
+//        imageView = findViewById(R.id.image);
+//        System.out.println(imageView);
+//        imageView.setImageResource(R.drawable.downloadmem);
+//        mLike.setEnabled(false);
+//        mDis.setEnabled(false);
+//        new DownloadImageTask((ImageView) findViewById(R.id.image),mLike,mDis)
+//                .execute(tokenFromStorage,"0");
 
 
-        mLike.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mLike.setEnabled(false);
-                mDis.setEnabled(false);
-                imageView.setImageResource(R.drawable.downloadmem);
-                new DownloadImageTask((ImageView) findViewById(R.id.image),mLike,mDis)
-                        .execute(tokenFromStorage,"1");
-
-            }
-        });
-
-        mDis.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mLike.setEnabled(false);
-                mDis.setEnabled(false);
-                imageView.setImageResource(R.drawable.downloadmem);
-                new DownloadImageTask((ImageView) findViewById(R.id.image),mLike,mDis)
-                        .execute(tokenFromStorage,"-1");
-            }
-        });
-        Button mMenu = (Button) findViewById(R.id.Menu);
-
-        mMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MenuActivity.class);
-                startActivity(intent);
-                finish();
-                return;
-            }
-        });
+//        mLike.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                mLike.setEnabled(false);
+//                mDis.setEnabled(false);
+//                imageView.setImageResource(R.drawable.downloadmem);
+//                new DownloadImageTask((ImageView) findViewById(R.id.image),mLike,mDis)
+//                        .execute(tokenFromStorage,"1");
+//
+//            }
+//        });
+//
+//        mDis.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                mLike.setEnabled(false);
+//                mDis.setEnabled(false);
+//                imageView.setImageResource(R.drawable.downloadmem);
+//                new DownloadImageTask((ImageView) findViewById(R.id.image),mLike,mDis)
+//                        .execute(tokenFromStorage,"-1");
+//            }
+//        });
+//        Button mMenu = (Button) findViewById(R.id.Menu);
+//
+//        mMenu.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(MainActivity.this, MenuActivity.class);
+//                startActivity(intent);
+//                finish();
+//                return;
+//            }
+//        });
 
     }
 
-//    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
-//            new BottomNavigationView.OnNavigationItemSelectedListener() {
-//                @Override
-//                public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-//                    Fragment selectedFragment = null;
-//
-//                    switch (menuItem.getItemId()){
-//                        case R.id.nav_upload:
-//                            selectedFragment = new UploadFragment();
-//                            break;
-//                    }
-//                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,selectedFragment).commit();
-//                    return true;
-//                }
-//            };
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                    Fragment selectedFragment = null;
+
+                    switch (menuItem.getItemId()){
+                        case R.id.nav_upload:
+                            selectedFragment = new UploadFragment();
+
+                            break;
+                        case R.id.nav_memes:
+                            selectedFragment = new MainFragment();
+                            break;
+
+                        case R.id.nav_mymemes:
+                            selectedFragment = new MyMemesFragment();
+                            break;
+                    }
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,selectedFragment).commit();
+                    return true;
+                }
+            };
 
 }
