@@ -21,7 +21,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestHandle;
 import com.loopj.android.http.RequestParams;
+import com.loopj.android.http.ResponseHandlerInterface;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,8 +35,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Iterator;
 
+import cz.msebera.android.httpclient.Header;
 import okhttp3.FormBody;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -91,45 +97,93 @@ public class MenuActivity extends AppCompatActivity {
                 }
                 final String Str_image = Base64.encodeToString(bytes, Base64.DEFAULT);
 
+                AsyncHttpClient client = new AsyncHttpClient();
+                RequestParams params = new RequestParams();SharedPreferences prefs = getSharedPreferences("token", MODE_PRIVATE);
+                String tokenFromStorage = prefs.getString("token", "Token not found");
+                client.addHeader("Authorization", "Token " + tokenFromStorage);
+                try {
+                    params.put("img", imageFile);
+                    System.out.println("image in params");
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                params.put("text", "Mem from android");
+                client.post("http://memnderapi.pythonanywhere.com/memes/api/create/", params,new AsyncHttpResponseHandler() {
 
-
-                final MediaType MEDIA_TYPE_JPEG = MediaType.parse("image/jpeg");
-                AsyncTask.execute(new Runnable() {
                     @Override
-                    public void run() {
-                        OkHttpClient client = new OkHttpClient();
-                        SharedPreferences prefs = getSharedPreferences("token", MODE_PRIVATE);
-                        String tokenFromStorage = prefs.getString("token", "Token not found");
-                        RequestBody requestFile = RequestBody.create(MediaType.parse("image/jpeg"), getRealPathFromURI(selectedImageURI));
-                        RequestBody requestBody = new MultipartBody.Builder()
-//                                .setType(MultipartBody.FORM)
-                                .addFormDataPart("img", Str_image)
-                                .addFormDataPart("text", "adsadg")
-                                .build();
-//                        RequestBody body = new MultipartBody.Builder()
-//                                .addFormDataPart("img",imageFile.getName(),requestFile)
-//                                .addFormDataPart("text", "dhashkd")
-//                                .build();
-                        Request request = new Request.Builder()
-                                .url("http://memnderapi.pythonanywhere.com/memes/api/create/")
-                                .header("Authorization", "Token " + tokenFromStorage)
-                                .post(requestBody)
-                                .build();
-                        try {
-                            Response response = client.newCall(request).execute();
-                            System.out.println(response.code());
-//                            JSONObject json = new JSONObject(response.body().toString());
-//                            Iterator<?> keys = json.keys();
-//                            while( keys.hasNext() ) {
-//                                String key = (String) keys.next();
-//                                System.out.println(key);
-//                                System.out.println(json.get(key));
-//                            }
-                        } catch (IOException e) {
-                            e.printStackTrace();
+                    public void onStart() {
+                        // called before request is started
+                    }
+
+
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, byte[] response) {
+                        // called when response HTTP status is "200 OK"
+                        System.out.println("OK-----");
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
+                        if (errorResponse != null) {
+                            System.out.println(new String(errorResponse));
                         }
                     }
+
+                    @Override
+                    public void onRetry(int retryNo) {
+                        // called when request is retried
+                    }
                 });
+
+//                final MediaType MEDIA_TYPE_JPEG = MediaType.parse("image/jpeg");
+//                AsyncTask.execute(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        SharedPreferences prefs = getSharedPreferences("token", MODE_PRIVATE);
+//                        String tokenFromStorage = prefs.getString("token", "Token not found");
+////                        AsyncHttpClient client = new AsyncHttpClient();
+////                        RequestParams params = new RequestParams();
+////                        try {
+////                            params.put("profile_picture", imageFile);
+////                            params.put("text", "Мем из андроида");
+////                        } catch(FileNotFoundException e) {}
+////
+////                        client.addHeader("Authorization", "Token " + tokenFromStorage);
+//
+//
+////                        OkHttpClient client = new OkHttpClient();
+////                        SharedPreferences prefs = getSharedPreferences("token", MODE_PRIVATE);
+////                        String tokenFromStorage = prefs.getString("token", "Token not found");
+////                        RequestBody requestFile = RequestBody.create(MediaType.parse("image/jpeg"), getRealPathFromURI(selectedImageURI));
+////                        RequestBody requestBody = new MultipartBody.Builder()
+//////                                .setType(MultipartBody.FORM)
+////                                .addFormDataPart("img", Str_image)
+////                                .addFormDataPart("text", "adsadg")
+////                                .build();
+//////                        RequestBody body = new MultipartBody.Builder()
+//////                                .addFormDataPart("img",imageFile.getName(),requestFile)
+//////                                .addFormDataPart("text", "dhashkd")
+//////                                .build();
+////                        Request request = new Request.Builder()
+////                                .url("http://memnderapi.pythonanywhere.com/memes/api/create/")
+////                                .header("Authorization", "Token " + tokenFromStorage)
+////                                .post(requestBody)
+////                                .build();
+////                        try {
+////                            Response response = client.newCall(request).execute();
+////                            System.out.println(response.code());
+//////                            JSONObject json = new JSONObject(response.body().toString());
+//////                            Iterator<?> keys = json.keys();
+//////                            while( keys.hasNext() ) {
+//////                                String key = (String) keys.next();
+//////                                System.out.println(key);
+//////                                System.out.println(json.get(key));
+//////                            }
+////                        } catch (IOException e) {
+////                            e.printStackTrace();
+////                        }
+//                    }
+//                });
 
             }
 
