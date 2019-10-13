@@ -12,15 +12,20 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import com.github.kevinsawicki.http.HttpRequest;
+import com.google.android.material.bottomnavigation.BottomNavigationItemView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
 import org.json.JSONException;
@@ -130,6 +135,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+//        BottomNavigationView bottomNav = findViewById(R.id.navigation_bottom);
+//        bottomNav.setOnNavigationItemSelectedListener(navListener);
+
         mLike = (Button) findViewById(R.id.Like);
         mDis = (Button) findViewById(R.id.Dis);
         final Map<String, String> data = new HashMap<String, String>();
@@ -179,5 +188,21 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+//    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+//            new BottomNavigationView.OnNavigationItemSelectedListener() {
+//                @Override
+//                public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+//                    Fragment selectedFragment = null;
+//
+//                    switch (menuItem.getItemId()){
+//                        case R.id.nav_upload:
+//                            selectedFragment = new UploadFragment();
+//                            break;
+//                    }
+//                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,selectedFragment).commit();
+//                    return true;
+//                }
+//            };
 
 }

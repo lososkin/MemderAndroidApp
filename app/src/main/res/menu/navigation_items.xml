@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_upload"
+        android:icon="@drawable/ic_file_upload_black_24dp"
+        android:title="upload" />
+
+    <item
+        android:id="@+id/nav_memes"
+        android:icon="@drawable/ic_whatshot_black_24dp"
+        android:title="memes" />
+
+    <item
+        android:id="@+id/nav_mymemes"
+        android:icon="@drawable/ic_storage_black_24dp"
+        android:title="mymemes" />
+</menu>
