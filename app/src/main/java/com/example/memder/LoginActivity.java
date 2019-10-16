@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import com.github.kevinsawicki.http.HttpRequest;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 

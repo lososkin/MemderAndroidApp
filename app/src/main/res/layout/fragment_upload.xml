@@ -4,7 +4,10 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:gravity="center"
-android:orientation="vertical">
+android:orientation="vertical"
+    android:paddingTop="40dp"
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp">
 
     <TextView
         android:id="@+id/status"
@@ -23,15 +26,17 @@ android:orientation="vertical">
         android:layout_weight="10"
         android:layout_width="0dp"
         android:layout_height="0dp"/>
+    <!--TODO это чо за хуйня вообще -->
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/content"
         android:layout_weight="80"
         android:layout_width="0dp"
         android:layout_height="match_parent"
+        android:layout_marginTop="24dp"
         android:layout_above="@+id/navigation_bottom">
-
         <ImageView
+
             android:id="@+id/previewImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
@@ -67,3 +72,4 @@ android:orientation="vertical">
 
 </LinearLayout>
 </LinearLayout>
+<!--TODO куча лейаутов бесполезных-->
