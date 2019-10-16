@@ -103,23 +103,27 @@ public class UploadFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
+        if (data!=null) {
 //        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
 //            if (ContextCompat.checkSelfPermission(MenuActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE)
 //                    != PackageManager.PERMISSION_GRANTED) {
-        String[] PERMISSIONS_STORAGE = {
-                Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
-        };
-        ActivityCompat.requestPermissions(getActivity(), PERMISSIONS_STORAGE, 1);
+            String[] PERMISSIONS_STORAGE = {
+                    Manifest.permission.READ_EXTERNAL_STORAGE,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+            };
+            ActivityCompat.requestPermissions(getActivity(), PERMISSIONS_STORAGE, 1);
 
-        final Uri selectedImageURI = data.getData();
-        imageFile = new File(getRealPathFromURI(selectedImageURI));
 
-        ImageView imageView = (ImageView) view.findViewById(R.id.previewImage);
-        imageView.setImageURI(selectedImageURI);
-        TextView statusView = (TextView) view.findViewById(R.id.status);
-        statusView.setText("Теперь нажмите кнопку загрузки");
+            final Uri selectedImageURI = data.getData();
+            imageFile = new File(getRealPathFromURI(selectedImageURI));
+
+            ImageView imageView = (ImageView) view.findViewById(R.id.previewImage);
+            System.out.println(selectedImageURI);
+
+            imageView.setImageURI(selectedImageURI);
+            TextView statusView = (TextView) view.findViewById(R.id.status);
+            statusView.setText("Теперь нажмите кнопку загрузки");
+        }
     }
 
     @Nullable
