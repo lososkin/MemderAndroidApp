@@ -24,8 +24,8 @@ import java.util.Map;
 public class LoginOrRegistrationActivity extends AppCompatActivity {
 
     private Button mLogin, mRegister;
-    private static final String addresToken = "https://memnderapi.pythonanywhere.com/signin_and_signup/api/checktoken/";
-    private static String addres = "https://memnderapi.pythonanywhere.com/signin_and_signup/api/login/";
+    private static final String addresToken = Settings.host+"/signin_and_signup/api/checktoken/";
+    private static String addres = Settings.host+"/signin_and_signup/api/login/";
     public String tokenFromStorage;
 
     @Override

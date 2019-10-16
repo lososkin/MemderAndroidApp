@@ -109,7 +109,7 @@ public class MenuActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 params.put("text", "Mem from android");
-                client.post("http://memnderapi.pythonanywhere.com/memes/api/create/", params,new AsyncHttpResponseHandler() {
+                client.post(Settings.host+"/memes/api/create/", params,new AsyncHttpResponseHandler() {
 
                     @Override
                     public void onStart() {
@@ -135,56 +135,6 @@ public class MenuActivity extends AppCompatActivity {
                         // called when request is retried
                     }
                 });
-
-//                final MediaType MEDIA_TYPE_JPEG = MediaType.parse("image/jpeg");
-//                AsyncTask.execute(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        SharedPreferences prefs = getSharedPreferences("token", MODE_PRIVATE);
-//                        String tokenFromStorage = prefs.getString("token", "Token not found");
-////                        AsyncHttpClient client = new AsyncHttpClient();
-////                        RequestParams params = new RequestParams();
-////                        try {
-////                            params.put("profile_picture", imageFile);
-////                            params.put("text", "Мем из андроида");
-////                        } catch(FileNotFoundException e) {}
-////
-////                        client.addHeader("Authorization", "Token " + tokenFromStorage);
-//
-//
-////                        OkHttpClient client = new OkHttpClient();
-////                        SharedPreferences prefs = getSharedPreferences("token", MODE_PRIVATE);
-////                        String tokenFromStorage = prefs.getString("token", "Token not found");
-////                        RequestBody requestFile = RequestBody.create(MediaType.parse("image/jpeg"), getRealPathFromURI(selectedImageURI));
-////                        RequestBody requestBody = new MultipartBody.Builder()
-//////                                .setType(MultipartBody.FORM)
-////                                .addFormDataPart("img", Str_image)
-////                                .addFormDataPart("text", "adsadg")
-////                                .build();
-//////                        RequestBody body = new MultipartBody.Builder()
-//////                                .addFormDataPart("img",imageFile.getName(),requestFile)
-//////                                .addFormDataPart("text", "dhashkd")
-//////                                .build();
-////                        Request request = new Request.Builder()
-////                                .url("http://memnderapi.pythonanywhere.com/memes/api/create/")
-////                                .header("Authorization", "Token " + tokenFromStorage)
-////                                .post(requestBody)
-////                                .build();
-////                        try {
-////                            Response response = client.newCall(request).execute();
-////                            System.out.println(response.code());
-//////                            JSONObject json = new JSONObject(response.body().toString());
-//////                            Iterator<?> keys = json.keys();
-//////                            while( keys.hasNext() ) {
-//////                                String key = (String) keys.next();
-//////                                System.out.println(key);
-//////                                System.out.println(json.get(key));
-//////                            }
-////                        } catch (IOException e) {
-////                            e.printStackTrace();
-////                        }
-//                    }
-//                });
 
             }
 

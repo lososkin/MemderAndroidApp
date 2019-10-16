@@ -69,7 +69,7 @@ public class UploadFragment extends Fragment {
             e.printStackTrace();
         }
         params.put("text", "Mem from android");
-        client.post("http://memnderapi.pythonanywhere.com/memes/api/create/", params,new AsyncHttpResponseHandler() {
+        client.post(Settings.host+"/memes/api/create/", params,new AsyncHttpResponseHandler() {
 
             @Override
             public void onStart() {

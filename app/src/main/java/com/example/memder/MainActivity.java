@@ -54,8 +54,8 @@ class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
     ImageView bmImage;
     Button mLike;
     Button mDis;
-    private String adress = "https://memnderapi.pythonanywhere.com/memes/api/get/";
-    private String likelink = "https://memnderapi.pythonanywhere.com/memes/api/like/";
+    private String adress = Settings.host+"/memes/api/get/";
+    private String likelink = Settings.host+"/memes/api/like/";
     final OkHttpClient client = new OkHttpClient();
     public DownloadImageTask(ImageView bmImage, Button mLike, Button mDis) {
         this.bmImage = bmImage;
@@ -98,8 +98,8 @@ class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
             if (response.code()==204)
                 return null;
             JSONObject json = new JSONObject(response.body().string());
-            urldisplay = "https://memnderapi.pythonanywhere.com" + String.valueOf(json.get("img"));
-            System.out.println("https://memnderapi.pythonanywhere.com" + String.valueOf(json.get("img")));
+            urldisplay = Settings.host + String.valueOf(json.get("img"));
+            System.out.println(Settings.host + String.valueOf(json.get("img")));
             InputStream in = new java.net.URL(urldisplay).openStream();
             mIcon11 = BitmapFactory.decodeStream(in);
         } catch (Exception e) {
@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
     private Fragment mymemesFagment;
     private ArrayList<String> al;
     private ArrayAdapter<String> arrayAdapter;
-    private String adress = "https://memnderapi.pythonanywhere.com/memes/api/get/";
+    private String adress = Settings.host+"/memes/api/get/";
     private String tokenFromStorage;
     private int i;
     private String imgURL;

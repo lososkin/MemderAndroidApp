@@ -23,7 +23,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
     private Button mRegister;
     private EditText mEmail, mPassword,mPassword1;
-    private String addressForRegistration = "https://memnderapi.pythonanywhere.com/signin_and_signup/api/signup/";
+    private String addressForRegistration = Settings.host+"/signin_and_signup/api/signup/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
