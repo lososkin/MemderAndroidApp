@@ -22,6 +22,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.github.kevinsawicki.http.HttpRequest;
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
@@ -120,7 +122,9 @@ class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
 }
 
 public class MainActivity extends AppCompatActivity {
-
+    private Fragment mainFragment;
+    private Fragment uploadFragment;
+    private Fragment mymemesFagment;
     private ArrayList<String> al;
     private ArrayAdapter<String> arrayAdapter;
     private String adress = "https://memnderapi.pythonanywhere.com/memes/api/get/";
@@ -139,7 +143,6 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bottomNav = findViewById(R.id.navigation_bottom);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
         bottomNav.setSelectedItemId(R.id.nav_memes);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new MainFragment()).commit();
 
         mLike = (Button) findViewById(R.id.Like);
         mDis = (Button) findViewById(R.id.Dis);
@@ -196,22 +199,82 @@ public class MainActivity extends AppCompatActivity {
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                    Fragment selectedFragment = null;
+                    FragmentTransaction fragmentTransaction= getSupportFragmentManager().beginTransaction();
+                    if(mainFragment!=null) {
+                        fragmentTransaction.hide(mainFragment);
+                    }
+                    if(uploadFragment!=null) {
+                        fragmentTransaction.hide(uploadFragment);
+                    }
+                    if(mymemesFagment!=null) {
+                        fragmentTransaction.hide(mymemesFagment);
+                    }
+
+                    Fragment selectedFragment=null;
 
                     switch (menuItem.getItemId()){
                         case R.id.nav_upload:
-                            selectedFragment = new UploadFragment();
-
+                            if(uploadFragment==null) {
+                                uploadFragment = new UploadFragment();
+                                fragmentTransaction.add(R.id.fragment_container,uploadFragment);
+                            }
+                            selectedFragment = uploadFragment;
                             break;
                         case R.id.nav_memes:
-                            selectedFragment = new MainFragment();
+                            if(mainFragment==null) {
+                                mainFragment = new MainFragment();
+                                fragmentTransaction.add(R.id.fragment_container,mainFragment);
+                            }
+                            selectedFragment = mainFragment;
                             break;
 
                         case R.id.nav_mymemes:
-                            selectedFragment = new MyMemesFragment();
+                            if(mymemesFagment==null) {
+                                mymemesFagment = new MyMemesFragment();
+                                fragmentTransaction.add(R.id.fragment_container,mymemesFagment);
+                            }
+                            selectedFragment = mymemesFagment;
                             break;
+
                     }
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,selectedFragment).commit();
+                    fragmentTransaction.show(selectedFragment);
+                    fragmentTransaction.commit();
+//                    Fragment selectedFragment = null;
+//
+//                    FragmentManager mFragmentManager = getSupportFragmentManager();
+//                    FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+//
+//                    Fragment curFrag = mFragmentManager.getPrimaryNavigationFragment();
+//                    if (curFrag != null) {
+//                        fragmentTransaction.hide(curFrag);
+//                    }
+//
+//                    Fragment fragment = mFragmentManager.findFragmentById(menuItem.getItemId());
+//                    if (fragment == null) {
+//                        switch (menuItem.getItemId()){
+//                            case R.id.nav_upload:
+//                                fragment = new UploadFragment();
+//
+//                                break;
+//                            case R.id.nav_memes:
+//                                fragment = new MainFragment();
+//                                break;
+//
+//                            case R.id.nav_mymemes:
+//                                fragment = new MyMemesFragment();
+//                                break;
+//                        }
+//                        fragmentTransaction.add(R.id.fragment_container,fragment);
+//
+//                    } else {
+//                        fragmentTransaction.show();
+//                    }
+//
+//                    fragmentTransaction.setPrimaryNavigationFragment(fragment);
+//                    fragmentTransaction.setReorderingAllowed(true);
+//                    fragmentTransaction.commitNowAllowingStateLoss();
+
+//                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,selectedFragment).commit();
                     return true;
                 }
             };
