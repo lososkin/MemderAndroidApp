@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-xmlns:android="http://schemas.android.com/apk/res/android"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:gravity="center"
-android:orientation="vertical"
-    android:paddingTop="40dp"
-    android:paddingLeft="24dp"
-    android:paddingRight="24dp">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/status"
@@ -15,61 +12,58 @@ android:orientation="vertical"
         android:layout_height="wrap_content"
         android:text="Для начала выберете мем"/>
 
-<LinearLayout
-    android:layout_weight="200"
-    android:layout_below="@+id/content"
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:orientation="horizontal">
+    <LinearLayout
+        android:layout_weight="200"
+        android:layout_below="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal">
 
-    <ImageView
-        android:layout_weight="10"
-        android:layout_width="0dp"
-        android:layout_height="0dp"/>
-    <!--TODO это чо за хуйня вообще -->
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/content"
-        android:layout_weight="80"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_marginTop="24dp"
-        android:layout_above="@+id/navigation_bottom">
         <ImageView
+            android:layout_weight="10"
+            android:layout_width="0dp"
+            android:layout_height="0dp"/>
 
-            android:id="@+id/previewImage"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/content"
+            android:layout_weight="80"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/navigation_bottom">
+
+            <ImageView
+                android:id="@+id/previewImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <ImageView
+            android:layout_weight="10"
+            android:layout_width="0dp"
+            android:layout_height="0dp"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_weight="20"
+        android:layout_below="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/chooseMem"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="wrap_content"
+            android:text="Выбрать мем" />
 
+        <Button
+            android:id="@+id/UploadImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Загрузить мем" />
 
-
-    </com.google.android.material.card.MaterialCardView>
-
-    <ImageView
-        android:layout_weight="10"
-        android:layout_width="0dp"
-        android:layout_height="0dp"/>
-
+    </LinearLayout>
 </LinearLayout>
-<LinearLayout
-    android:layout_weight="20"
-    android:layout_below="@+id/content"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-
-    <Button
-        android:id="@+id/chooseMem"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Выбрать мем" />
-
-    <Button
-        android:id="@+id/UploadImage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Загрузить мем" />
-
-</LinearLayout>
-</LinearLayout>
-<!--TODO куча лейаутов бесполезных-->
