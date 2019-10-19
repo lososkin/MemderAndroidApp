@@ -6,7 +6,7 @@ class Item {
     int id;
     int likes;
     int dislikes;
-    String imgURL;
+    String img;
     String text;
 }
 
