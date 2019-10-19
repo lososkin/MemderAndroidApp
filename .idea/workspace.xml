@@ -31,6 +31,7 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/memder/MyMemesFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/memder/MyMemesFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/downloadmem.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/downloadmem.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/icon.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/logo.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/nomemes.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/nomemes.jpg" afterDir="false" />
@@ -136,7 +137,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/main.xml">
           <provider editor-type-id="android-designer2" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="446">
+            <state relative-caret-position="113">
               <caret line="31" column="50" selection-start-line="31" selection-start-column="50" selection-end-line="31" selection-end-column="50" />
             </state>
           </provider>
@@ -637,7 +638,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Structure" order="0" side_tool="true" />
       <window_info id="Image Layers" order="1" />
@@ -646,11 +646,11 @@
       <window_info id="Build Variants" order="4" sideWeight="0.50321543" side_tool="true" weight="0.19530416" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Resources Explorer" order="6" weight="0.32980332" />
-      <window_info active="true" content_ui="combo" id="Project" order="7" sideWeight="0.49678457" visible="true" weight="0.19515885" />
+      <window_info content_ui="combo" id="Project" order="7" sideWeight="0.49678457" visible="true" weight="0.19515885" />
       <window_info id="Captures" order="8" sideWeight="0.50162864" side_tool="true" weight="0.1860817" />
       <window_info anchor="bottom" id="Version Control" order="0" />
       <window_info anchor="bottom" id="TODO" order="1" weight="0.32937366" />
-      <window_info anchor="bottom" id="Terminal" order="2" weight="0.27361563" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="2" visible="true" weight="0.27361563" />
       <window_info anchor="bottom" id="Event Log" order="3" sideWeight="0.5015129" side_tool="true" weight="0.32899022" />
       <window_info anchor="bottom" id="Build" order="4" sideWeight="0.49924356" weight="0.3257329" />
       <window_info anchor="bottom" id="Android Profiler" order="5" weight="0.32899022" />
@@ -955,7 +955,7 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/main.xml">
       <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="446">
+        <state relative-caret-position="113">
           <caret line="31" column="50" selection-start-line="31" selection-start-column="50" selection-end-line="31" selection-end-column="50" />
         </state>
       </provider>
