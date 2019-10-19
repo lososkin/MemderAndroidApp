@@ -11,6 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class MyMemesFragment extends Fragment {
@@ -21,6 +24,22 @@ public class MyMemesFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_mymemes,container,false);
         SharedPreferences prefs = this.getActivity().getSharedPreferences("token", Context.MODE_PRIVATE);
         token = prefs.getString("token", "Token not found");
+
+        Call<ApiResponse> call =
+                RetrofitClient.getInstance()
+                .getApi()
+                .getAnswers(1,"Token "+token);
+        call.enqueue(new Callback<ApiResponse>() {
+            @Override
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                System.out.println(response.body().count);
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse> call, Throwable t) {
+
+            }
+        });
 
         return view;
     }

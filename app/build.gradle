@@ -20,6 +20,10 @@ android {
 }
 
 dependencies {
+    def paging_version = "1.0.0"
+    def view_model_version = "1.1.0"
+    def support_version = "27.1.0"
+    def glide_version = "4.3.1"
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'com.google.android.material:material:1.0.0-rc01'
@@ -32,4 +36,23 @@ dependencies {
     implementation 'com.github.kevinsawicki:http-request:6.0'
     implementation("com.squareup.okhttp3:okhttp:4.2.1")
     implementation 'com.loopj.android:android-async-http:1.4.9'
+
+    //adding retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+
+    //adding view model
+    implementation "android.arch.lifecycle:extensions:$view_model_version"
+    implementation "android.arch.lifecycle:viewmodel:$view_model_version"
+
+    //adding paging
+    implementation "android.arch.paging:runtime:$paging_version"
+
+    //adding recyclerview and cardview
+    implementation "com.android.support:cardview-v7:$support_version"
+    implementation "com.android.support:recyclerview-v7:$support_version"
+
+    //adding glide
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
 }
