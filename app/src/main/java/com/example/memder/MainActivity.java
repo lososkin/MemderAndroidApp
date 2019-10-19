@@ -3,6 +3,7 @@ package com.example.memder;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
 
@@ -66,6 +68,9 @@ class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
             }
         }
         Bitmap mIcon11 = null;
+        Matrix matrix = new Matrix();
+        //set image rotation value to 90 degrees in matrix.
+
         try {
             RequestBody formBody = new FormBody.Builder()
                     .build();
@@ -77,13 +82,15 @@ class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
 
 
             Response response = client.newCall(request).execute();
-            if (response.code()==204)
-                return null;
+            if (response.code()==204)return null;
             JSONObject json = new JSONObject(response.body().string());
             urldisplay = Settings.host + String.valueOf(json.get("img"));
             System.out.println(Settings.host + String.valueOf(json.get("img")));
             InputStream in = new java.net.URL(urldisplay).openStream();
             mIcon11 = BitmapFactory.decodeStream(in);
+            matrix.postRotate(0);
+            //supply the original width and height, if you don't want to change the height and width of bitmap.
+            mIcon11 = Bitmap.createBitmap(mIcon11, 0, 0, mIcon11.getWidth(),mIcon11.getHeight(), matrix, true);
         } catch (Exception e) {
             Log.e("Error", e.getMessage());
             e.printStackTrace();
@@ -94,6 +101,7 @@ class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
     protected void onPostExecute(Bitmap result) {
         if (result==null){
             bmImage.setImageResource(R.drawable.nomemes);
+
         }
         else {
             bmImage.setImageBitmap(result);
