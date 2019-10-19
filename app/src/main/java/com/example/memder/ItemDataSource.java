@@ -15,14 +15,12 @@ public class ItemDataSource extends PageKeyedDataSource<Integer, Item> {
     //we will start from the first page which is 1
     private static final int FIRST_PAGE = 1;
 
-    //we need to fetch from stackoverflow
-
 
     //this will be called once to load the initial data
     @Override
     public void loadInitial(@NonNull LoadInitialParams<Integer> params, @NonNull final LoadInitialCallback<Integer, Item> callback) {
         RetrofitClient.getInstance()
-                .getApi().getAnswers(1,"Token 45caec1f88281b0531f0026ddf5f110fb5fc3cc7") //TODO token must be for user
+                .getApi().getAnswers(1,"Token "+MainActivity.tokenFromStorage)
                 .enqueue(new Callback<ApiResponse>() {
                     @Override
                     public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
@@ -42,7 +40,7 @@ public class ItemDataSource extends PageKeyedDataSource<Integer, Item> {
     @Override
     public void loadBefore(@NonNull final LoadParams<Integer> params, @NonNull final LoadCallback<Integer, Item> callback) {
         RetrofitClient.getInstance()
-                .getApi().getAnswers(params.key,"Token 45caec1f88281b0531f0026ddf5f110fb5fc3cc7") //TODO token must be for user
+                .getApi().getAnswers(params.key,"Token "+MainActivity.tokenFromStorage)
                 .enqueue(new Callback<ApiResponse>() {
                     @Override
                     public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
@@ -71,7 +69,7 @@ public class ItemDataSource extends PageKeyedDataSource<Integer, Item> {
     public void loadAfter(@NonNull final LoadParams<Integer> params, @NonNull final LoadCallback<Integer, Item> callback) {
         RetrofitClient.getInstance()
                 .getApi()
-                .getAnswers(params.key, "Token 45caec1f88281b0531f0026ddf5f110fb5fc3cc7") //TODO token must be for user
+                .getAnswers(params.key, "Token "+MainActivity.tokenFromStorage)
                 .enqueue(new Callback<ApiResponse>() {
                     @Override
                     public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {

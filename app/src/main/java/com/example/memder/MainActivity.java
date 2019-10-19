@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String> al;
     private ArrayAdapter<String> arrayAdapter;
     private String adress = Settings.host+"/memes/api/get/";
-    private String tokenFromStorage;
+    public static String tokenFromStorage;
     private int i;
     private String imgURL;
     private Bitmap image;
