@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,6 +31,8 @@ public class MyMemesFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_mymemes,container,false);
         SharedPreferences prefs = this.getActivity().getSharedPreferences("token", Context.MODE_PRIVATE);
         token = prefs.getString("token", "Token not found");
+
+
 
         recyclerView = view.findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
