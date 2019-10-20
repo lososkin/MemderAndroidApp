@@ -117,6 +117,8 @@ public class UploadFragment extends Fragment {
             final Uri selectedImageURI = data.getData();
             imageFile = new File(getRealPathFromURI(selectedImageURI));
 
+
+
             ImageView imageView = (ImageView) view.findViewById(R.id.previewImage);
             System.out.println(selectedImageURI);
 
