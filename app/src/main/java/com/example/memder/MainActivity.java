@@ -126,12 +126,13 @@ public class MainActivity extends AppCompatActivity {
     private  Button mLike;
     private  Button mDis;
     private ImageView imageView;
+    public static BottomNavigationView bottomNav;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        BottomNavigationView bottomNav = findViewById(R.id.navigation_bottom);
+        bottomNav = findViewById(R.id.navigation_bottom);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
         bottomNav.setSelectedItemId(R.id.nav_memes);
 
@@ -181,6 +182,9 @@ public class MainActivity extends AppCompatActivity {
                                 mymemesFagment = new MyMemesFragment();
                                 fragmentTransaction.add(R.id.fragment_container,mymemesFagment);
                             }
+                            fragmentTransaction.remove(mymemesFagment);
+                            mymemesFagment = new MyMemesFragment();
+                            fragmentTransaction.add(R.id.fragment_container,mymemesFagment);
                             selectedFragment = mymemesFagment;
                             break;
 

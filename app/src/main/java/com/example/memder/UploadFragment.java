@@ -121,6 +121,7 @@ public class UploadFragment extends Fragment {
                 // called when response HTTP status is "200 OK"
                 System.out.println("OK-----");
                 statusView.setText("Загружено");
+//                MainActivity.bottomNav.setSelectedItemId(R.id.nav_mymemes); #???????????????????
             }
 
             @Override
