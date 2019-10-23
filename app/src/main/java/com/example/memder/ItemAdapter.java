@@ -36,8 +36,8 @@ public class ItemAdapter extends PagedListAdapter<Item, ItemAdapter.ItemViewHold
         Item item = getItem(position);
 
         if (item != null) {
-            holder.dislikesView.setText(String.valueOf(item.dislikes));
-            holder.likesView.setText(String.valueOf(item.likes));
+            holder.dislikesView.setText("-".concat(String.valueOf(item.dislikes)));
+            holder.likesView.setText("+".concat(String.valueOf(item.likes)));
             System.out.println(item.img);
             Glide.with(mCtx)
                     .load(item.img)
