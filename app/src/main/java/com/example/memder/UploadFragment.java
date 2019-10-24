@@ -147,11 +147,11 @@ public class UploadFragment extends Fragment {
 //        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
 //            if (ContextCompat.checkSelfPermission(MenuActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE)
 //                    != PackageManager.PERMISSION_GRANTED) {
-            String[] PERMISSIONS_STORAGE = {
-                    Manifest.permission.READ_EXTERNAL_STORAGE,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE
-            };
-            ActivityCompat.requestPermissions(getActivity(), PERMISSIONS_STORAGE, 1);
+//            String[] PERMISSIONS_STORAGE = {
+//                    Manifest.permission.READ_EXTERNAL_STORAGE,
+//                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+//            };
+//            ActivityCompat.requestPermissions(getActivity(), PERMISSIONS_STORAGE, 1);
 
 
             final Uri selectedImageURI = data.getData();
@@ -201,6 +201,11 @@ public class UploadFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        String[] PERMISSIONS_STORAGE = {
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+        };
+        ActivityCompat.requestPermissions(getActivity(), PERMISSIONS_STORAGE, 1);
         view = inflater.inflate(R.layout.fragment_upload,container,false);
         Button mUpload = (Button) view.findViewById(R.id.UploadImage);
         mUpload.setOnClickListener(new View.OnClickListener() {
@@ -218,6 +223,13 @@ public class UploadFragment extends Fragment {
         mChoose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                String[] PERMISSIONS_STORAGE = {
+                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE
+                };
+                ActivityCompat.requestPermissions(getActivity(), PERMISSIONS_STORAGE, 1);
+
                 Intent i = new Intent(
                         Intent.ACTION_PICK,
                         android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
