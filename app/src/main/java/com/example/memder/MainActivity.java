@@ -134,7 +134,24 @@ public class MainActivity extends AppCompatActivity {
 
         bottomNav = findViewById(R.id.navigation_bottom);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
-        bottomNav.setSelectedItemId(R.id.nav_memes);
+
+
+        if(Settings.status==1){
+            uploadFragment = new UploadFragment();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,uploadFragment).commit();
+
+        }else{
+            if(Settings.status==2){
+                bottomNav.setSelectedItemId(R.id.nav_memes);
+                mainFragment = new MainFragment();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,mainFragment).commit();
+            }else{
+                mymemesFagment = new MyMemesFragment();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,mymemesFagment).commit();
+            }
+        }
+
+
 
         mLike = (Button) findViewById(R.id.Like);
         mDis = (Button) findViewById(R.id.Dis);
@@ -164,6 +181,7 @@ public class MainActivity extends AppCompatActivity {
                     switch (menuItem.getItemId()){
                         case R.id.nav_upload:
                             if(uploadFragment==null) {
+                                Settings.status=1;
                                 uploadFragment = new UploadFragment();
                                 fragmentTransaction.add(R.id.fragment_container,uploadFragment);
                             }
@@ -171,6 +189,7 @@ public class MainActivity extends AppCompatActivity {
                             break;
                         case R.id.nav_memes:
                             if(mainFragment==null) {
+                                Settings.status=2;
                                 mainFragment = new MainFragment();
                                 fragmentTransaction.add(R.id.fragment_container,mainFragment);
                             }
@@ -178,6 +197,7 @@ public class MainActivity extends AppCompatActivity {
                             break;
 
                         case R.id.nav_mymemes:
+                            Settings.status=3;
                             if(mymemesFagment==null) {
                                 mymemesFagment = new MyMemesFragment();
                                 fragmentTransaction.add(R.id.fragment_container,mymemesFagment);
