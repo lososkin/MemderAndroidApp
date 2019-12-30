@@ -12,11 +12,11 @@
         android:paddingTop="56dp"
         android:paddingLeft="24dp"
         android:paddingRight="24dp">
-        <ImageView android:src="@drawable/logo"
-            android:layout_width="wrap_content"
-            android:layout_height="72dp"
-            android:layout_marginBottom="24dp"
-            android:layout_gravity="center_horizontal" />
+<!--        <ImageView android:src="@drawable/logo"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="72dp"-->
+<!--            android:layout_marginBottom="24dp"-->
+<!--            android:layout_gravity="center_horizontal" />-->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -54,9 +54,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Войти"
+            android:background="@drawable/buttonshape"
+            android:textColor="#FFFFFF"
             android:id="@+id/Login"/>
 
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="15px">
 
+        </ImageView>
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/Register"
             android:layout_width="fill_parent"
@@ -64,6 +70,8 @@
             android:layout_marginBottom="24dp"
             android:text="Еще не зарегистрированы?"
             android:gravity="center"
+            android:background="@drawable/buttonshape"
+            android:textColor="#FFFFFF"
             android:textSize="16sp"/>
 
     </LinearLayout>

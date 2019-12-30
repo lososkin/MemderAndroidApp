@@ -41,6 +41,9 @@
             android:layout_height="0dp"/>
 
     </LinearLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="5dp"/>
     <LinearLayout
         android:layout_weight="10"
         android:layout_below="@+id/content"
@@ -57,14 +60,21 @@
             android:layout_weight="20"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Лайк" />
-
+            android:text="Лайк"
+            android:background="@drawable/buttonshape"
+            android:textColor="#FFFFFF"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="2"/>
         <Button
             android:id="@+id/Dis"
             android:layout_weight="20"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Дизлайк" />
+            android:text="Дизлайк"
+            android:background="@drawable/buttonshape"
+            android:textColor="#FFFFFF"/>
 
         <Button
             android:layout_weight="0"
