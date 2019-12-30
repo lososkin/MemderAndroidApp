@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.net.Uri;
@@ -114,6 +115,7 @@ public class UploadFragment extends Fragment {
             public void onStart() {
                 // called before request is started
                 statusView.setText("Загружается");
+                statusView.setTextColor(Color.parseColor("#953636"));
             }
 
             @Override
@@ -121,6 +123,8 @@ public class UploadFragment extends Fragment {
                 // called when response HTTP status is "200 OK"
                 System.out.println("OK-----");
                 statusView.setText("Загружено");
+                statusView.setTextColor(Color.parseColor("#498A3C"));
+
 //                MainActivity.bottomNav.setSelectedItemId(R.id.nav_mymemes); #???????????????????
             }
 
@@ -129,12 +133,14 @@ public class UploadFragment extends Fragment {
                 if (errorResponse != null) {
                     System.out.println(new String(errorResponse));
                     statusView.setText("Не удалось загрузить");
+                    statusView.setTextColor(Color.parseColor("#953636"));
                 }
             }
 
             @Override
             public void onFinish() {
                 // called before request is finish
+
             }
 
         });
@@ -195,6 +201,7 @@ public class UploadFragment extends Fragment {
 //            Glide.with(getContext()).load("file:" + getRealPathFromURI(selectedImageURI)).into(imageView);
             TextView statusView = (TextView) view.findViewById(R.id.status);
             statusView.setText("Теперь нажмите кнопку загрузки");
+            statusView.setTextColor(Color.parseColor("#8D8D8D"));
         }
     }
 
@@ -207,7 +214,7 @@ public class UploadFragment extends Fragment {
         };
         ActivityCompat.requestPermissions(getActivity(), PERMISSIONS_STORAGE, 1);
         view = inflater.inflate(R.layout.fragment_upload,container,false);
-        Button mUpload = (Button) view.findViewById(R.id.UploadImage);
+        final Button mUpload = (Button) view.findViewById(R.id.UploadImage);
         mUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -216,9 +223,10 @@ public class UploadFragment extends Fragment {
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
+                mUpload.setEnabled(false);
             }
         });
-
+        mUpload.setEnabled(false);
         Button mChoose = (Button) view.findViewById(R.id.chooseMem);
         mChoose.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -235,6 +243,7 @@ public class UploadFragment extends Fragment {
                         android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 
                 startActivityForResult(i, RESULT_LOAD_IMAGE);
+                mUpload.setEnabled(true);
             }
         });
 
